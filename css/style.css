@@ -1,0 +1,1032 @@
+/* ==========================================================================
+   Biblioteca Digital UniFECAF — folha de estilo principal
+
+   Sumário
+   1. Fontes e variáveis (paleta, tipografia, espaçamentos)
+   2. Reset e base
+   3. Componentes reutilizáveis (botão, título de seção, etiqueta)
+   4. Cabeçalho e menu
+   5. Seções: Hero · Sobre · Faixa · Livros · Unidades · Contatos · Rodapé
+   6. Responsividade (mobile-first: a base é o celular; os @media ampliam)
+   7. Animações (CSS puro, com fallback e respeito a "reduzir movimento")
+   8. Acessibilidade (foco visível, texto só para leitores de tela)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. FONTES E VARIÁVEIS
+   ========================================================================== */
+
+/* Fontes hospedadas no próprio projeto: o site não depende de serviços externos */
+@font-face {
+    font-family: "Poppins";
+    font-weight: 600;
+    font-display: swap;
+    src: url("../assets/fontes/poppins-latin-600-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Poppins";
+    font-weight: 700;
+    font-display: swap;
+    src: url("../assets/fontes/poppins-latin-700-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 400;
+    font-display: swap;
+    src: url("../assets/fontes/inter-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Inter";
+    font-weight: 600;
+    font-display: swap;
+    src: url("../assets/fontes/inter-latin-600-normal.woff2") format("woff2");
+}
+
+:root {
+    /* Paleta: azuis e verde extraídos da identidade visual da UniFECAF */
+    --noite: #04213D;
+    /* cabeçalho, unidades, rodapé  */
+    --azul-escuro: #004A79;
+    /* seções "Sobre" e "Livros"    */
+    --azul: #0164AA;
+    /* botões e links de destaque   */
+    --azul-claro: #5BA8DC;
+    --azul-gelo: #BBD9F0;
+    --gelo: #EAF2F9;
+    /* fundo claro (contatos)       */
+    --verde: #14B367;
+    /* acento: item ativo e CTA     */
+    --amarelo: #F5B93A;
+    /* anel de foco em fundo escuro */
+    --branco: #FFFFFF;
+
+    /* Tipografia: Poppins nos títulos (mesma família do material da UniFECAF), Inter no texto */
+    --fonte-titulo: "Poppins", "Segoe UI", Arial, sans-serif;
+    --fonte-texto: "Inter", "Segoe UI", Arial, sans-serif;
+
+    /* Espaçamentos e formas */
+    --largura-max: 72.5rem;
+    --espaco-secao: clamp(3rem, 7vw, 5.5rem);
+    --raio: 0.875rem;
+    --altura-topo: 4rem;
+
+    /* Cor do anel de foco (muda conforme o fundo da seção) */
+    --foco: var(--amarelo);
+}
+
+
+/* ==========================================================================
+   2. RESET E BASE
+   ========================================================================== */
+
+/* Seletor universal: zera margens e inclui borda/padding no cálculo da largura */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--fonte-texto);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--noite);
+    background-color: var(--noite);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+/* Grupo de seletores: mesma tipografia para todos os títulos */
+h1,
+h2,
+h3 {
+    font-family: var(--fonte-titulo);
+    line-height: 1.2;
+}
+
+a {
+    color: inherit;
+}
+
+::selection {
+    background-color: var(--verde);
+    color: var(--noite);
+}
+
+/* Âncoras não podem ficar escondidas atrás do cabeçalho fixo */
+section[id] {
+    scroll-margin-top: var(--altura-topo);
+}
+
+.container {
+    width: min(100% - 2rem, var(--largura-max));
+    margin-inline: auto;
+}
+
+
+/* ==========================================================================
+   3. COMPONENTES
+   ========================================================================== */
+
+/* Título de seção: caixa-alta com espaçamento largo, como no protótipo */
+.titulo-secao {
+    position: relative;
+    margin-bottom: 2.25rem;
+    padding-bottom: 0.875rem;
+    font-size: clamp(1.125rem, 2.6vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+/* Pseudo-elemento: traço verde sob o título */
+.titulo-secao::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 3.5rem;
+    height: 0.25rem;
+    border-radius: 999px;
+    background-color: var(--verde);
+}
+
+.secao {
+    padding-block: var(--espaco-secao);
+}
+
+.botao {
+    display: inline-block;
+    padding: 0.8rem 1.75rem;
+    border-radius: 999px;
+    font-family: var(--fonte-titulo);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.botao--verde {
+    background-color: var(--verde);
+    color: var(--noite);
+    /* contraste 5,9:1 */
+}
+
+.botao--verde:hover {
+    background-color: var(--branco);
+    transform: translateY(-2px);
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 0.2rem 0.75rem;
+    border-radius: 999px;
+    background-color: var(--gelo);
+    color: var(--azul-escuro);
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+
+/* ==========================================================================
+   4. CABEÇALHO E MENU
+   ========================================================================== */
+
+.topo {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background-color: var(--noite);
+    color: var(--branco);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.topo__interno {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    width: min(100% - 1.5rem, var(--largura-max));
+    min-height: var(--altura-topo);
+    margin-inline: auto;
+}
+
+.marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    text-decoration: none;
+}
+
+.marca img {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.marca__texto {
+    font-family: var(--fonte-titulo);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.marca__texto strong {
+    color: var(--verde);
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.125rem;
+}
+
+/* Seletor descendente: todos os links dentro do menu */
+.menu a {
+    display: block;
+    padding: 0.7rem 0.55rem;
+    /* altura de toque confortável no celular */
+    border-radius: 0.5rem;
+    font-family: var(--fonte-titulo);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.menu a:hover {
+    background-color: rgba(255, 255, 255, 0.14);
+}
+
+/* Seletor de atributo: item da página atual (também lido por leitores de tela) */
+.menu a[aria-current="page"] {
+    background-color: var(--verde);
+    color: var(--noite);
+}
+
+
+/* ==========================================================================
+   5. SEÇÕES
+   ========================================================================== */
+
+/* ----- 5.1 Hero ----- */
+.hero {
+    position: relative;
+    display: grid;
+    align-items: end;
+    min-height: 34rem;
+    overflow: hidden;
+    color: var(--branco);
+    background-color: var(--noite);
+}
+
+.hero__imagem {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 72% center;
+}
+
+/* Véu escuro para garantir contraste do texto sobre a ilustração */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(0deg, rgba(4, 33, 61, 0.96) 0%, rgba(4, 33, 61, 0.78) 50%, rgba(4, 33, 61, 0.12) 100%);
+}
+
+.hero__texto {
+    position: relative;
+    z-index: 2;
+    width: min(100% - 2rem, var(--largura-max));
+    margin-inline: auto;
+    padding-block: 3rem;
+}
+
+.hero__texto h1 {
+    max-width: 14ch;
+    margin-bottom: 1rem;
+    font-size: clamp(2.125rem, 8vw, 3.75rem);
+    font-weight: 700;
+}
+
+.hero__texto p {
+    max-width: 34rem;
+    margin-bottom: 1.75rem;
+    font-size: clamp(1.0625rem, 2.4vw, 1.25rem);
+}
+
+/* ----- 5.2 Sobre a nossa biblioteca ----- */
+.sobre {
+    background-color: var(--azul-escuro);
+    color: var(--branco);
+}
+
+.sobre__grade {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.sobre__destaque img {
+    width: 100%;
+    border-radius: var(--raio);
+}
+
+.destaques {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1rem;
+}
+
+.destaques img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--raio);
+}
+
+.destaques figcaption {
+    margin-top: 0.625rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+}
+
+.destaques strong {
+    display: block;
+    font-family: var(--fonte-titulo);
+    font-size: 1rem;
+}
+
+/* ----- 5.3 Faixa de imagem ----- */
+.faixa {
+    position: relative;
+    display: grid;
+    place-items: center;
+    height: clamp(13rem, 30vw, 23rem);
+    overflow: hidden;
+    background-color: var(--azul);
+}
+
+.faixa img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
+}
+
+.faixa__texto {
+    position: relative;
+    max-width: 30ch;
+    padding: 0 1rem;
+    margin-bottom: 3.75rem;
+    color: var(--branco);
+    font-family: var(--fonte-titulo);
+    font-size: clamp(1.5rem, 4.4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-shadow: 0 2px 14px rgba(4, 33, 61, 0.55);
+}
+
+/* ----- 5.4 Nossos livros ----- */
+.livros {
+    background-color: var(--azul-escuro);
+    color: var(--branco);
+}
+
+.livros__lista {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+}
+
+.livro {
+    --foco: var(--azul);
+    /* o cartão é claro: o anel de foco precisa ser escuro */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--raio);
+    background-color: var(--branco);
+    color: var(--noite);
+    box-shadow: 0 10px 24px rgba(4, 33, 61, 0.28);
+}
+
+.livro__capa {
+    display: grid;
+    place-items: center;
+    padding: 1.5rem 1rem 0;
+    border-bottom: 0.625rem solid var(--azul-gelo);
+    /* "prateleira" sob o livro */
+    background-color: var(--gelo);
+}
+
+.livro__capa img {
+    width: min(48%, 9.5rem);
+    border-radius: 0.25rem;
+    filter: drop-shadow(0 8px 10px rgba(4, 33, 61, 0.35));
+}
+
+.livro__corpo {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.livro__corpo .etiqueta {
+    align-self: flex-start;
+}
+
+.livro h3 {
+    font-size: 1.1875rem;
+    font-weight: 700;
+}
+
+.livro cite {
+    font-style: normal;
+}
+
+/* Botão "Saiba mais": usa o <summary> do <details>, acessível por teclado sem JavaScript */
+.livro details {
+    margin-top: auto;
+    padding-top: 0.5rem;
+}
+
+.livro summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.4rem;
+    border-radius: 999px;
+    background-color: var(--azul);
+    color: var(--branco);
+    font-family: var(--fonte-titulo);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+    transition: background-color 0.2s ease;
+}
+
+.livro summary::-webkit-details-marker {
+    display: none;
+}
+
+.livro summary::after {
+    content: "+";
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.livro details[open] summary::after {
+    content: "\2212";
+    /* sinal de menos */
+}
+
+.livro summary:hover {
+    background-color: var(--azul-escuro);
+}
+
+.livro__extra {
+    margin-top: 0.875rem;
+    padding: 0.875rem 1rem;
+    border-left: 0.25rem solid var(--verde);
+    border-radius: 0 0.5rem 0.5rem 0;
+    background-color: var(--gelo);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+}
+
+.livro__extra dt {
+    font-weight: 600;
+}
+
+/* Seletor de irmão adjacente: espaço entre uma descrição e o próximo termo */
+.livro__extra dd+dt {
+    margin-top: 0.5rem;
+}
+
+/* ----- 5.5 As unidades ----- */
+.unidades {
+    background-color: var(--noite);
+    color: var(--branco);
+    /* Corta o deslocamento lateral da animação "texto-entra"
+       para não gerar barra de rolagem horizontal no celular */
+    overflow-x: clip;
+}
+
+.unidade {
+    display: grid;
+    gap: 1.25rem;
+}
+
+/* Seletor de irmão geral: espaço entre as unidades */
+.unidade~.unidade {
+    margin-top: 3rem;
+}
+
+.unidade img {
+    width: 100%;
+    aspect-ratio: 8 / 5.2;
+    object-fit: cover;
+    border-radius: var(--raio);
+}
+
+.unidade h3 {
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.unidade__nome {
+    margin: 0.25rem 0 0.75rem;
+    color: var(--verde);
+    font-weight: 600;
+}
+
+/* ----- 5.6 Contatos ----- */
+.contatos {
+    --foco: var(--azul);
+    background-color: var(--gelo);
+    color: var(--noite);
+}
+
+.contatos__grade {
+    display: grid;
+    gap: 2rem;
+}
+
+.contatos__texto>*+* {
+    margin-top: 1.125rem;
+}
+
+.contatos .titulo-secao {
+    margin-bottom: 1.75rem;
+}
+
+.contatos address {
+    padding-left: 1rem;
+    border-left: 0.25rem solid var(--verde);
+    font-style: normal;
+    font-weight: 600;
+}
+
+.contatos img {
+    width: 100%;
+    border-radius: var(--raio);
+}
+
+.contatos a {
+    color: var(--azul-escuro);
+    font-weight: 600;
+    text-underline-offset: 0.2em;
+}
+
+.contatos a:hover {
+    color: var(--azul);
+}
+
+/* ----- 5.7 Rodapé ----- */
+.rodape {
+    padding-block: 1.75rem;
+    background-color: var(--noite);
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    color: var(--branco);
+    font-size: 0.875rem;
+}
+
+.rodape__interno {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+}
+
+.rodape p {
+    max-width: 46rem;
+}
+
+.rodape a {
+    font-weight: 600;
+}
+
+
+/* ==========================================================================
+   6. RESPONSIVIDADE (mobile-first)
+   ========================================================================== */
+
+/* Telas muito estreitas: o menu pode quebrar de linha em vez de estourar a largura */
+@media (max-width: 29.99rem) {
+    .marca__texto {
+        /* esconde o nome ao lado do ícone para sobrar espaço ao menu */
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+}
+
+/* Tablets pequenos (a partir de 640px) */
+@media (min-width: 40rem) {
+    .topo__interno {
+        width: min(100% - 2rem, var(--largura-max));
+    }
+
+    .menu a {
+        padding-inline: 0.9rem;
+        font-size: 0.9rem;
+    }
+
+    .livros__lista {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .unidade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .contatos__grade {
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .hero {
+        min-height: 36rem;
+    }
+}
+
+/* Computadores (a partir de 960px) */
+@media (min-width: 60rem) {
+    :root {
+        --altura-topo: 4.5rem;
+    }
+
+    .marca__texto {
+        font-size: 1.125rem;
+    }
+
+    .menu {
+        gap: 0.5rem;
+    }
+
+    .menu a {
+        padding-inline: 1.1rem;
+        font-size: 0.95rem;
+    }
+
+    /* Hero: texto à esquerda, ilustração à direita */
+    .hero {
+        align-items: center;
+        min-height: clamp(34rem, 46vw, 42rem);
+    }
+
+    .hero::before {
+        background: linear-gradient(90deg, rgba(4, 33, 61, 0.94) 0%, rgba(4, 33, 61, 0.8) 36%, rgba(4, 33, 61, 0) 66%);
+    }
+
+    .hero__imagem {
+        object-position: center;
+    }
+
+    /* Sobre: texto | imagem | texto, igual ao protótipo */
+    .sobre__grade {
+        grid-template-columns: 1fr 1.15fr 1fr;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 3.5rem;
+    }
+
+    .destaques {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+
+    .livros__lista {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 2rem;
+    }
+
+    .unidade {
+        gap: 3rem;
+    }
+
+    .unidade~.unidade {
+        margin-top: 4rem;
+    }
+}
+
+
+/* ==========================================================================
+   7. ANIMAÇÕES
+   Tudo em CSS. As animações guiadas pela rolagem (animation-timeline) só são
+   ativadas em navegadores que as suportam; nos demais, o conteúdo
+   simplesmente aparece normalmente. Nenhum conteúdo depende de animação.
+   ========================================================================== */
+
+/* ----- 7.1 Entrada do hero (roda uma vez, ao carregar a página) ----- */
+@keyframes sobe-e-aparece {
+    from {
+        opacity: 0;
+        transform: translateY(1.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes aproxima {
+    from {
+        transform: scale(1.08);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+.hero__imagem {
+    animation: aproxima 1.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__texto h1,
+.hero__texto p,
+.hero__texto .botao {
+    animation: sobe-e-aparece 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.hero__texto p {
+    animation-delay: 0.15s;
+}
+
+.hero__texto .botao {
+    animation-delay: 0.3s;
+}
+
+/* ----- 7.2 Animações guiadas pela rolagem ----- */
+@supports (animation-timeline: view()) {
+
+    /* Barra de progresso no topo: cresce conforme a página é rolada */
+    @keyframes progresso {
+        from {
+            transform: scaleX(0);
+        }
+
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    .progresso {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 30;
+        width: 100%;
+        height: 0.25rem;
+        background-color: var(--verde);
+        transform-origin: 0 50%;
+        animation: progresso linear both;
+        animation-timeline: scroll(root);
+    }
+
+    /* Hero: ao rolar, a ilustração desce mais devagar (paralaxe) e o texto sai suavemente */
+    @keyframes paralaxe {
+        to {
+            transform: translateY(18%);
+        }
+    }
+
+    @keyframes texto-sai {
+        to {
+            opacity: 0;
+            transform: translateY(-2.5rem);
+        }
+    }
+
+    .hero__imagem {
+        animation: aproxima 1.8s cubic-bezier(0.22, 1, 0.36, 1) both, paralaxe linear both;
+        animation-timeline: auto, view();
+        animation-range: normal, exit 0% exit 100%;
+    }
+
+    .hero__texto {
+        animation: texto-sai linear both;
+        animation-timeline: view();
+        animation-range: exit 10% exit 70%;
+    }
+
+    /* Cartões de livros: entram de baixo e saem discretamente por cima */
+    @keyframes cartao {
+        0% {
+            opacity: 0;
+            transform: translateY(3.5rem) scale(0.94);
+        }
+
+        22%,
+        78% {
+            opacity: 1;
+            transform: none;
+        }
+
+        100% {
+            opacity: 0;
+            transform: translateY(-2rem) scale(0.97);
+        }
+    }
+
+    .livros__lista>li {
+        animation: cartao linear both;
+        animation-timeline: view();
+        animation-range: entry var(--atraso, 0%) exit 100%;
+    }
+
+    /* Imagens das unidades: revelação lateral (efeito "cortina") */
+    @keyframes cortina {
+        from {
+            clip-path: inset(0 100% 0 0 round 0.875rem);
+        }
+
+        to {
+            clip-path: inset(0 0 0 0 round 0.875rem);
+        }
+    }
+
+    @keyframes texto-entra {
+        from {
+            opacity: 0;
+            transform: translateX(2rem);
+        }
+
+        to {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .unidade img {
+        animation: cortina linear both;
+        animation-timeline: view();
+        animation-range: entry 5% entry 80%;
+    }
+
+    .unidade__texto {
+        animation: texto-entra linear both;
+        animation-timeline: view();
+        animation-range: entry 25% entry 90%;
+    }
+
+    /* Texto da faixa: aproxima-se conforme a faixa cruza a tela */
+    @keyframes faixa-texto {
+
+        0%,
+        100% {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        35%,
+        65% {
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .faixa__texto {
+        animation: faixa-texto linear both;
+        animation-timeline: view();
+    }
+}
+
+/* Cartões em três colunas: cada coluna entra um pouco depois da anterior */
+@media (min-width: 60rem) {
+    .livros__lista>li:nth-child(3n + 2) {
+        --atraso: 6%;
+    }
+
+    .livros__lista>li:nth-child(3n) {
+        --atraso: 12%;
+    }
+}
+
+/* ----- 7.3 Animações em resposta a ações da pessoa ----- */
+@keyframes abre {
+    from {
+        opacity: 0;
+        transform: translateY(-0.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.livro details[open] .livro__extra {
+    animation: abre 0.3s ease both;
+}
+
+.livro:hover .livro__capa img,
+.livro:focus-within .livro__capa img {
+    transform: translateY(-0.375rem) rotate(-1.5deg);
+}
+
+.livro__capa img {
+    transition: transform 0.3s ease;
+}
+
+/* ----- 7.4 Quem prefere menos movimento ----- */
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .progresso {
+        display: none;
+    }
+}
+
+
+/* ==========================================================================
+   8. ACESSIBILIDADE
+   ========================================================================== */
+
+/* Anel de foco bem visível para quem navega pelo teclado */
+:focus-visible {
+    outline: 0.1875rem solid var(--foco);
+    outline-offset: 0.1875rem;
+}
+
+/* Link "pular para o conteúdo": só aparece quando recebe foco */
+.pular-link {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 40;
+    padding: 0.6rem 1rem;
+    border-radius: 0.5rem;
+    background-color: var(--branco);
+    color: var(--noite);
+    font-weight: 600;
+    transform: translateY(-200%);
+}
+
+.pular-link:focus {
+    transform: none;
+}
+
+/* Texto lido por leitores de tela, invisível na tela */
+.so-leitor {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}

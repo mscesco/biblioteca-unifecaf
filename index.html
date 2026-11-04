@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Biblioteca Digital UniFECAF | Livros e materiais de estudo</title>
+    <meta name="description" content="Biblioteca Digital UniFECAF: livros, materiais acadêmicos e conteúdos de apoio para os estudantes, em uma interface simples e acessível.">
+    <meta name="theme-color" content="#04213D">
+    <link rel="icon" type="image/svg+xml" href="assets/imagens/favicon.svg">
+
+    <!-- CSS externo: um único arquivo controla a aparência de todo o site -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body id="topo">
+
+    <!-- Link para teclado e leitores de tela pularem direto ao conteúdo -->
+    <a class="pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <!-- Barra de progresso de rolagem (decorativa, animada apenas por CSS) -->
+    <div class="progresso" aria-hidden="true"></div>
+
+    <!-- ===================== CABEÇALHO E MENU ===================== -->
+    <header class="topo">
+        <div class="topo__interno">
+            <a class="marca" href="#biblioteca">
+                <img src="assets/imagens/logo-marca.svg" alt="" width="64" height="64">
+                <span class="marca__texto">Biblioteca Digital <strong>UniFECAF</strong></span>
+            </a>
+
+            <nav aria-label="Navegação principal">
+                <ul class="menu">
+                    <li><a href="#biblioteca" aria-current="page">Biblioteca</a></li>
+                    <li><a href="#livros">Livros</a></li>
+                    <li><a href="#unidades">Unidades</a></li>
+                    <li><a href="#contatos">Contatos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="conteudo">
+
+        <!-- ===================== BANNER PRINCIPAL ===================== -->
+        <section class="hero" id="biblioteca" aria-labelledby="titulo-hero">
+            <img class="hero__imagem" src="assets/imagens/hero.svg" width="1600" height="700" fetchpriority="high"
+                alt="Ilustração de uma biblioteca com estantes cheias de livros coloridos, uma janela em arco e um notebook aberto sobre a mesa.">
+
+            <div class="hero__texto">
+                <h1 id="titulo-hero">Biblioteca Digital UniFECAF</h1>
+                <p>Livros, materiais acadêmicos e conteúdos de apoio ao estudo em um só lugar, para acessar do computador ou do celular.</p>
+                <a class="botao botao--verde" href="#livros">Ver os livros</a>
+            </div>
+        </section>
+
+        <!-- ===================== SOBRE A NOSSA BIBLIOTECA ===================== -->
+        <section class="secao sobre" id="sobre" aria-labelledby="titulo-sobre">
+            <div class="container">
+                <h2 id="titulo-sobre" class="titulo-secao">Sobre a nossa biblioteca</h2>
+
+                <div class="sobre__grade">
+                    <p>A Biblioteca Digital UniFECAF reúne livros, materiais acadêmicos e conteúdos de apoio para acompanhar o estudante em todas as etapas da graduação. Tudo fica em um só lugar, organizado por categorias e pensado para ser encontrado em poucos cliques.</p>
+
+                    <figure class="sobre__destaque">
+                        <img src="assets/imagens/sobre-principal.svg" width="800" height="480" loading="lazy" decoding="async"
+                            alt="Livro aberto sobre uma mesa de estudos, entre duas estantes e uma janela em arco.">
+                    </figure>
+
+                    <p>A plataforma foi desenhada para quem estuda no computador, no tablet ou no celular. O aluno descobre os destaques do acervo, conhece os serviços oferecidos pela biblioteca e sabe a quem recorrer quando precisa de ajuda.</p>
+                </div>
+
+                <ul class="destaques">
+                    <li>
+                        <figure>
+                            <img src="assets/imagens/sobre-1.svg" width="480" height="320" loading="lazy" decoding="async"
+                                alt="Estante com livros organizados em prateleiras.">
+                            <figcaption><strong>Acervo organizado</strong>Livros separados por categorias.</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="assets/imagens/sobre-2.svg" width="480" height="320" loading="lazy" decoding="async"
+                                alt="Notebook com um livro na tela, ao lado de uma pilha de livros e uma xícara.">
+                            <figcaption><strong>Apoio ao estudo</strong>Materiais para revisar e aprofundar.</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="assets/imagens/sobre-3.svg" width="480" height="320" loading="lazy" decoding="async"
+                                alt="Tablet e celular exibindo livros, com o símbolo de conexão sem fio acima.">
+                            <figcaption><strong>Acesso em qualquer tela</strong>Computador, tablet ou celular.</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="assets/imagens/sobre-4.svg" width="480" height="320" loading="lazy" decoding="async"
+                                alt="Três pessoas conversando, com balões de fala acima delas.">
+                            <figcaption><strong>Comunidade acadêmica</strong>Atendimento e orientação.</figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===================== FAIXA DE IMAGEM ===================== -->
+        <section class="faixa" aria-label="Destaque">
+            <img src="assets/imagens/banner.svg" width="1600" height="420" loading="lazy" decoding="async" alt="">
+            <p class="faixa__texto">Estude no seu ritmo, de onde estiver.</p>
+        </section>
+
+        <!-- ===================== NOSSOS LIVROS ===================== -->
+        <section class="secao livros" id="livros" aria-labelledby="titulo-livros">
+            <div class="container">
+                <h2 id="titulo-livros" class="titulo-secao">Nossos livros</h2>
+
+                <ul class="livros__lista">
+
+                    <li>
+                        <article class="livro">
+                            <figure class="livro__capa">
+                                <img src="assets/imagens/livro-1.svg" width="300" height="420" loading="lazy" decoding="async"
+                                    alt="Capa ilustrada do livro HTML5 e CSS3, em tons de vermelho, com o símbolo de código.">
+                            </figure>
+                            <div class="livro__corpo">
+                                <p class="etiqueta">Web</p>
+                                <h3><cite>HTML5 e CSS3</cite></h3>
+                                <p>Introdução prática à criação de sites com HTML5 e CSS3, com exemplos para testar passo a passo.</p>
+                                <details>
+                                    <summary>Saiba mais</summary>
+                                    <dl class="livro__extra">
+                                        <dt>Autoria</dt>
+                                        <dd>Lucas Mazza</dd>
+                                        <dt>Indicado para</dt>
+                                        <dd>Quem está começando em desenvolvimento web, como na disciplina de Design Web.</dd>
+                                    </dl>
+                                </details>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="livro">
+                            <figure class="livro__capa">
+                                <img src="assets/imagens/livro-2.svg" width="300" height="420" loading="lazy" decoding="async"
+                                    alt="Capa ilustrada do livro CSS Eficiente, em azul, com uma folha quadriculada de projeto e um lápis.">
+                            </figure>
+                            <div class="livro__corpo">
+                                <p class="etiqueta">Web</p>
+                                <h3><cite>CSS Eficiente</cite></h3>
+                                <p>Técnicas e ferramentas para escrever estilos mais organizados, fáceis de manter e de reaproveitar.</p>
+                                <details>
+                                    <summary>Saiba mais</summary>
+                                    <dl class="livro__extra">
+                                        <dt>Autoria</dt>
+                                        <dd>Tárcio Zemel</dd>
+                                        <dt>Indicado para</dt>
+                                        <dd>Quem já conhece o básico de CSS e quer organizar melhor seus estilos.</dd>
+                                    </dl>
+                                </details>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="livro">
+                            <figure class="livro__capa">
+                                <img src="assets/imagens/livro-3.svg" width="300" height="420" loading="lazy" decoding="async"
+                                    alt="Capa ilustrada do livro Código Limpo, azul-escura, com linhas de código coloridas.">
+                            </figure>
+                            <div class="livro__corpo">
+                                <p class="etiqueta">Programação</p>
+                                <h3><cite>Código Limpo</cite></h3>
+                                <p>Práticas para escrever código legível, simples de entender e de manter ao longo do tempo.</p>
+                                <details>
+                                    <summary>Saiba mais</summary>
+                                    <dl class="livro__extra">
+                                        <dt>Autoria</dt>
+                                        <dd>Robert C. Martin</dd>
+                                        <dt>Indicado para</dt>
+                                        <dd>Estudantes de programação e de desenvolvimento de software.</dd>
+                                    </dl>
+                                </details>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="livro">
+                            <figure class="livro__capa">
+                                <img src="assets/imagens/livro-4.svg" width="300" height="420" loading="lazy" decoding="async"
+                                    alt="Capa ilustrada do livro Não Me Faça Pensar, amarela, com placas de sinalização.">
+                            </figure>
+                            <div class="livro__corpo">
+                                <p class="etiqueta">Design e UX</p>
+                                <h3><cite>Não Me Faça Pensar</cite></h3>
+                                <p>Uma introdução à usabilidade na web: como deixar uma página clara para quem a utiliza.</p>
+                                <details>
+                                    <summary>Saiba mais</summary>
+                                    <dl class="livro__extra">
+                                        <dt>Autoria</dt>
+                                        <dd>Steve Krug</dd>
+                                        <dt>Indicado para</dt>
+                                        <dd>Quem projeta interfaces e quer entender melhor a usabilidade.</dd>
+                                    </dl>
+                                </details>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="livro">
+                            <figure class="livro__capa">
+                                <img src="assets/imagens/livro-5.svg" width="300" height="420" loading="lazy" decoding="async"
+                                    alt="Capa ilustrada do livro Algoritmos: Teoria e Prática, verde, com um diagrama em árvore.">
+                            </figure>
+                            <div class="livro__corpo">
+                                <p class="etiqueta">Algoritmos</p>
+                                <h3><cite>Algoritmos: Teoria e Prática</cite></h3>
+                                <p>Referência clássica sobre o projeto e a análise de algoritmos e estruturas de dados.</p>
+                                <details>
+                                    <summary>Saiba mais</summary>
+                                    <dl class="livro__extra">
+                                        <dt>Autoria</dt>
+                                        <dd>Thomas H. Cormen e outros</dd>
+                                        <dt>Indicado para</dt>
+                                        <dd>Estudantes de Ciência da Computação em disciplinas de algoritmos.</dd>
+                                    </dl>
+                                </details>
+                            </div>
+                        </article>
+                    </li>
+
+                    <li>
+                        <article class="livro">
+                            <figure class="livro__capa">
+                                <img src="assets/imagens/livro-6.svg" width="300" height="420" loading="lazy" decoding="async"
+                                    alt="Capa ilustrada do livro Padrões de Projeto, roxa, com quadrados entrelaçados.">
+                            </figure>
+                            <div class="livro__corpo">
+                                <p class="etiqueta">Engenharia de software</p>
+                                <h3><cite>Padrões de Projeto</cite></h3>
+                                <p>Catálogo de soluções reutilizáveis para problemas recorrentes no projeto de software orientado a objetos.</p>
+                                <details>
+                                    <summary>Saiba mais</summary>
+                                    <dl class="livro__extra">
+                                        <dt>Autoria</dt>
+                                        <dd>Erich Gamma e outros</dd>
+                                        <dt>Indicado para</dt>
+                                        <dd>Quem estuda orientação a objetos e engenharia de software.</dd>
+                                    </dl>
+                                </details>
+                            </div>
+                        </article>
+                    </li>
+
+                </ul>
+            </div>
+        </section>
+
+        <!-- ===================== AS UNIDADES ===================== -->
+        <section class="secao unidades" id="unidades" aria-labelledby="titulo-unidades">
+            <div class="container">
+                <h2 id="titulo-unidades" class="titulo-secao">As unidades</h2>
+
+                <article class="unidade">
+                    <figure>
+                        <img src="assets/imagens/unidade-1.svg" width="800" height="520" loading="lazy" decoding="async"
+                            alt="Monitor exibindo capas de livros, ao lado de uma estante.">
+                    </figure>
+                    <div class="unidade__texto">
+                        <h3>Unidade 1</h3>
+                        <p class="unidade__nome">Acervo digital</p>
+                        <p>Reúne os livros e materiais disponíveis para consulta online. O estudante navega pelas categorias, conhece os destaques e encontra o que precisa para a disciplina em poucos cliques.</p>
+                    </div>
+                </article>
+
+                <article class="unidade">
+                    <figure>
+                        <img src="assets/imagens/unidade-2.svg" width="800" height="520" loading="lazy" decoding="async"
+                            alt="Mesa de estudos com dois notebooks, entre estantes e uma janela em arco.">
+                    </figure>
+                    <div class="unidade__texto">
+                        <h3>Unidade 2</h3>
+                        <p class="unidade__nome">Apoio ao estudo</p>
+                        <p>Concentra conteúdos complementares, como guias de leitura e materiais de revisão, para quem quer aprofundar o que viu em aula e estudar com mais autonomia.</p>
+                    </div>
+                </article>
+
+                <article class="unidade">
+                    <figure>
+                        <img src="assets/imagens/unidade-3.svg" width="800" height="520" loading="lazy" decoding="async"
+                            alt="Atendente de headset diante de um notebook, cercada por balões de conversa e um ponto de interrogação.">
+                    </figure>
+                    <div class="unidade__texto">
+                        <h3>Unidade 3</h3>
+                        <p class="unidade__nome">Atendimento e suporte</p>
+                        <p>Esclarece dúvidas sobre o uso da biblioteca e orienta o aluno na busca por materiais. O contato é feito pelos canais informados na seção de contatos.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ===================== CONTATOS ===================== -->
+        <section class="secao contatos" id="contatos" aria-labelledby="titulo-contatos">
+            <div class="container contatos__grade">
+                <div class="contatos__texto">
+                    <h2 id="titulo-contatos" class="titulo-secao">Contatos</h2>
+
+                    <p>Quer sugerir um livro, tirar uma dúvida sobre o acervo ou pedir ajuda para encontrar um material? Fale com a equipe da biblioteca ou visite um dos nossos polos.</p>
+
+                    <address>
+                        Av. Vida Nova, 166<br>
+                        Jardim Maria Rosa, Taboão da Serra<br>
+                        CEP 06764-045<br>
+                        Polos EAD UniFECAF
+                    </address>
+
+                    <p>Prefere escrever? Envie uma mensagem para
+                        <a href="mailto:biblioteca@exemplo.com.br">biblioteca@exemplo.com.br</a>
+                        ou conheça a instituição no
+                        <a href="https://www.unifecaf.com.br" target="_blank" rel="noopener noreferrer">site da UniFECAF<span class="so-leitor"> (abre em uma nova aba)</span></a>.
+                    </p>
+                </div>
+
+                <figure>
+                    <img src="assets/imagens/contato.svg" width="640" height="480" loading="lazy" decoding="async"
+                        alt="Envelope aberto, balões de conversa e um marcador de localização.">
+                </figure>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================== RODAPÉ ===================== -->
+    <footer class="rodape">
+        <div class="container rodape__interno">
+            <p>&copy; 2026 Biblioteca Digital UniFECAF. Projeto acadêmico da disciplina de Design Web; textos e ilustrações são demonstrativos.</p>
+            <a href="#topo">Voltar ao topo</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
